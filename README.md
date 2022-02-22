@@ -1,4 +1,4 @@
-# 简介
+# REBUILD DOCS PREVIEW
 
 基于 [Libre Office](https://www.libreoffice.org/) 的文档预览服务，原理是通过将 Office 文件转换成 PDF，然后通过浏览器自带的 PDF 阅读功能进行预览。
 
