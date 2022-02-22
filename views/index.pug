@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.container
+    div.preview-form
+      h1.text-uppercase.mb-4= title
+      form.row(action='docs-preview/preview')
+        div.col-9
+          input.form-control.w-100(type="text", placeholder="输入文档地址", name="src")
+        div.col-3
+          button.btn.btn-primary.w-100(type="submit") 预览

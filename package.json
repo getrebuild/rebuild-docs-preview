@@ -1,7 +1,6 @@
 {
   "name": "rebuild-docs-preview",
   "version": "1.0.0",
-  "type": "module",
   "dependencies": {
     "abort-controller": "^3.0.0",
     "cookie-parser": "~1.4.4",
@@ -10,15 +9,15 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "node-fetch": "^3.2.0",
+    "node-fetch": "^2.6.7",
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
     "eslint": "^8.9.0",
+    "nodemon": "^2.0.15",
     "prettier": "^2.5.1"
   },
   "scripts": {
-    "start": "node ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./bin/www"
   }
 }

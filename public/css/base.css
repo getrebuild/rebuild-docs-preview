@@ -1,8 +1,4 @@
-body {
-  padding: 50px;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00b7ff;
+.preview-form {
+  max-width: 768px;
+  margin: 100px auto;
 }
