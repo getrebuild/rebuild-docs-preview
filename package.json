@@ -18,6 +18,7 @@
     "prettier": "^2.5.1"
   },
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "test": "nodemon ./bin/www"
   }
 }
