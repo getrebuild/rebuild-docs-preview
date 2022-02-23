@@ -3,9 +3,14 @@ extends layout
 block content
   div.container
     div.preview-form
-      h1.text-uppercase.mb-4= title
+      h1.text-uppercase.mb-4 DOCS PREVIEW
       form.row(action='docs-preview/preview')
         div.col-9
-          input.form-control.w-100(type="text", placeholder="输入文档地址", name="src")
+          input.form-control.w-100(type="url", placeholder="输入文档地址", name="src")
         div.col-3
           button.btn.btn-primary.w-100(type="submit") 预览
+
+      div.copyright
+        a(href="https://github.com/getrebuild/rebuild-docs-preview") About
+        span.ms-1.me-1 -
+        span Version 1.0.0

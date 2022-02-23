@@ -2,3 +2,14 @@
   max-width: 768px;
   margin: 100px auto;
 }
+
+.copyright {
+  position: fixed;
+  bottom: 15px;
+}
+
+.copyright,
+.copyright a {
+  color: #777;
+  font-size: 14px;
+}

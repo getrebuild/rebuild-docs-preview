@@ -4,10 +4,10 @@
 
 # 使用
 
-## 环境
+## 环境准备
 
-- Node v14.x
-- Libre Office 6.x 或更高
+- [Node](https://nodejs.org/) `v12.x` `v14.x` `v16.x`
+- [Libre Office](https://zh-cn.libreoffice.org/)
 
 ## 启动/运行
 

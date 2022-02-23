@@ -26,7 +26,7 @@ router.get('/preview', async function (req, res) {
     });
   }
 
-  const srcClear = src.split('?')[0]; // No query
+  const srcClear = src.split('?')[0]; // No queries
   const c = USE_CACHED[srcClear];
   if (c) {
     const exists = fs.existsSync(c);
@@ -83,9 +83,7 @@ async function fileDownload(src, callback) {
     return;
   }
 
-  const dest = `${
-    process.env.RBDP_WORKDIR || os.tmpdir()
-  }/pdf-${new Date().getTime()}`;
+  const dest = `${getUseDir()}/file-${new Date().getTime()}`;
 
   const buffer = await response.buffer();
   fs.writeFile(`${dest}.download`, buffer, {}, err => {
@@ -98,16 +96,47 @@ async function fileDownload(src, callback) {
 function convertPdf(file, callback) {
   const cmd = `${
     process.env.RBDP_LIBREOFFICE_BIN || 'libreoffice'
-  } --headless --convert-to pdf ${file}.download --outdir ${
-    process.env.RBDP_WORKDIR || os.tmpdir()
-  }`;
+  } --headless --convert-to pdf ${file}.download --outdir ${getUseDir()}`;
   console.debug('Exec convert ...', cmd);
-
+  
   // eslint-disable-next-line no-unused-vars
   exec(cmd, (err, stdout, stderr) => {
     if (err) console.error('>>>>>>>>>>', err);
     typeof callback === 'function' && callback(err, `${file}.pdf`);
   });
+}
+
+function getUseDir() {
+  const dir = `${
+    process.env.RBDP_WORKDIR || os.tmpdir()
+  }/${dateFormat('YYYYmmdd', new Date())}`;
+
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir)
+  }
+
+  return dir
+}
+
+function dateFormat(fmt, date) {
+  const opt = {
+    'Y+': date.getFullYear().toString(),
+    'm+': (date.getMonth() + 1).toString(),
+    'd+': date.getDate().toString(),
+    'H+': date.getHours().toString(),
+    'M+': date.getMinutes().toString(),
+    'S+': date.getSeconds().toString()
+  };
+
+  let ret;
+  for (let k in opt) {
+      ret = new RegExp(`(${k})`).exec(fmt);
+      if (ret) {
+          fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, '0')))
+      };
+  };
+  
+  return fmt;
 }
 
 module.exports = router;
