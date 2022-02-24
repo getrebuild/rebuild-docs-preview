@@ -34,3 +34,13 @@ nohup npm start &
 | `RBDP_LIBREOFFICE_BIN`       | Libre Office 命令，默认 `libreoffice`  |
 | `RBDP_WORKDIR`               | 文件下载与转换目录，默认为系统临时目录 |
 | `RBDP_FILE_DOWNLOAD_TIMEOUT` | 文件下载超时时间，默认 30 秒           |
+
+## 在 [REBUILD](https://getrebuild.com/) 中配置使用
+
+确保预览服务可正常使用/访问，然后在 RB 中 通过 管理中心 - [FrontJS](https://getrebuild.com/docs/dev/how-use-front-api) 功能添加一个全局脚本，脚本内容如下。
+
+```
+// 请将 PREVIEW_SERVER 替换成实际的预览服务地址
+var rb = window.rb || {}
+rb._officePreviewUrl = "http://PREVIEW_SERVER/docs-preview/preview?src="
+```
