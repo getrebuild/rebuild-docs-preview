@@ -1,6 +1,6 @@
 # REBUILD DOCS PREVIEW
 
-基于 [Libre Office](https://www.libreoffice.org/) 的文档预览服务，原理是通过将 Office 文件转换成 PDF，然后通过浏览器自带的 PDF 阅读功能进行预览。
+基于 [Libre Office](https://www.libreoffice.org/) 的简易文档预览服务。原理是通过将 Office 文件转换成 PDF，然后通过浏览器自带的 PDF 阅读功能进行预览。
 
 # 使用
 
@@ -12,10 +12,15 @@
 ## 启动/运行
 
 ```
+git clone git@github.com:getrebuild/rebuild-docs-preview.git
+
 npm install && npm start
 
-# or dev
+# dev
 npm test
+
+# daemon
+nohup npm start &
 ```
 
 启动后访问 [http://localhost:3000/](http://localhost:3000/)
