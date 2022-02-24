@@ -98,7 +98,7 @@ function convertPdf(file, callback) {
     process.env.RBDP_LIBREOFFICE_BIN || 'libreoffice'
   } --headless --convert-to pdf ${file}.download --outdir ${getUseDir()}`;
   console.debug('Exec convert ...', cmd);
-  
+
   // eslint-disable-next-line no-unused-vars
   exec(cmd, (err, stdout, stderr) => {
     if (err) console.error('>>>>>>>>>>', err);
@@ -107,15 +107,16 @@ function convertPdf(file, callback) {
 }
 
 function getUseDir() {
-  const dir = `${
-    process.env.RBDP_WORKDIR || os.tmpdir()
-  }/${dateFormat('YYYYmmdd', new Date())}`;
+  const dir = `${process.env.RBDP_WORKDIR || os.tmpdir()}/${dateFormat(
+    'YYYYmmdd',
+    new Date()
+  )}`;
 
   if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir)
+    fs.mkdirSync(dir);
   }
 
-  return dir
+  return dir;
 }
 
 function dateFormat(fmt, date) {
@@ -125,17 +126,20 @@ function dateFormat(fmt, date) {
     'd+': date.getDate().toString(),
     'H+': date.getHours().toString(),
     'M+': date.getMinutes().toString(),
-    'S+': date.getSeconds().toString()
+    'S+': date.getSeconds().toString(),
   };
 
   let ret;
   for (let k in opt) {
-      ret = new RegExp(`(${k})`).exec(fmt);
-      if (ret) {
-          fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, '0')))
-      };
-  };
-  
+    ret = new RegExp(`(${k})`).exec(fmt);
+    if (ret) {
+      fmt = fmt.replace(
+        ret[1],
+        ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, '0')
+      );
+    }
+  }
+
   return fmt;
 }
 
