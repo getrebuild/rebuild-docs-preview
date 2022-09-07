@@ -37,10 +37,8 @@ nohup npm start &
 
 ## 在 [REBUILD](https://getrebuild.com/) 中配置使用
 
-确保预览服务可正常使用/访问，然后在 RB 中 通过 管理中心 - [FrontJS](https://getrebuild.com/docs/dev/how-use-front-api) 功能添加一个全局脚本，脚本内容如下。
+确保预览服务可正常使用/访问，然后在 RB 管理中心 - 通用配置 中填写“文档预览服务地址”，如下（其中 `PREVIEW_SERVER` 请替换为你自己的预览服务地址）。
 
 ```
-// 请将 PREVIEW_SERVER 替换成实际的预览服务地址
-var rb = window.rb || {}
-rb._officePreviewUrl = "http://PREVIEW_SERVER/docs-preview/preview?src="
+http://PREVIEW_SERVER/docs-preview/preview?src=
 ```
