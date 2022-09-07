@@ -34,6 +34,7 @@ nohup npm start &
 | `RBDP_LIBREOFFICE_BIN`       | Libre Office 命令，默认 `libreoffice`  |
 | `RBDP_WORKDIR`               | 文件下载与转换目录，默认为系统临时目录 |
 | `RBDP_FILE_DOWNLOAD_TIMEOUT` | 文件下载超时时间，默认 30 秒           |
+| `RBDP_SRC_WHITELIST`         | 源文件地址白名单，默认不限制           |
 
 ## 在 [REBUILD](https://getrebuild.com/) 中配置使用
 
