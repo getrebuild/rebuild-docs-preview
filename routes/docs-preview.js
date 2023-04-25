@@ -46,13 +46,13 @@ router.get('/preview', async (req, res) => {
     }
   }
 
-  // OO
+  // OO Service
   if (process.env.RBDP_ONLYOFFICE_SERVER) {
     ooConvertPdf(
       src,
       (err, file) => {
         if (err) {
-          res.send(JSON.stringify(err));
+          res.send(`预览服务失败: ${JSON.stringify(err)}`);
         } else {
           USE_CACHED[srcClear] = file;
           preview(file, attname);
@@ -66,14 +66,14 @@ router.get('/preview', async (req, res) => {
   // LO
   await fileDownload(src, (err, file) => {
     if (err) {
-      res.send(JSON.stringify(err));
+      res.send(`源文件失败: ${JSON.stringify(err)}`);
     } else {
-      loConvertPdf(file, (err2, file2) => {
-        if (err2) {
-          res.send(JSON.stringify(err2));
+      loConvertPdf(file, (err4c, file4c) => {
+        if (err4c) {
+          res.send(`转换失败: ${JSON.stringify(err4c)}`);
         } else {
-          USE_CACHED[srcClear] = file2;
-          preview(file2, attname);
+          USE_CACHED[srcClear] = file4c;
+          preview(file4c, attname);
         }
       });
     }
@@ -86,7 +86,7 @@ let SRC_WHITELIST;
 function isWhitelist(src) {
   if (!SRC_WHITELIST) {
     SRC_WHITELIST = (process.env.RBDP_SRC_WHITELIST || '').split(',');
-    console.debug('Load whitelist ...', SRC_WHITELIST);
+    console.log('Load whitelist ...', SRC_WHITELIST);
   }
 
   let inWhitelist = SRC_WHITELIST.length === 0;
@@ -105,7 +105,7 @@ function isWhitelist(src) {
 
 // 下载文件
 async function fileDownload(src, callback) {
-  console.debug('Download file ...', src);
+  console.log('Download file ...', src);
 
   const controller = new AbortController();
   const timeout = setTimeout(
@@ -145,7 +145,7 @@ function loConvertPdf(file, callback) {
   const cmd = `${
     process.env.RBDP_LIBREOFFICE_BIN || 'libreoffice'
   } --headless --convert-to pdf ${file}.download --outdir ${getUseDir()}`;
-  console.debug('Exec convert ...', cmd);
+  console.log('Exec convert ...', cmd);
 
   // eslint-disable-next-line no-unused-vars
   exec(cmd, (err, stdout, stderr) => {
@@ -181,6 +181,7 @@ function ooConvertPdf(file, callback, title) {
       callback(null, res);
     })
     .catch(err => {
+      console.error('>>>>>>>>>>', err);
       callback(err);
     });
 }
