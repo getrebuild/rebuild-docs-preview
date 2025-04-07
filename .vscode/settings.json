@@ -2,7 +2,7 @@
   "editor.fontSize": 12,
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
 
   "eslint.codeAction.showDocumentation": {
@@ -10,12 +10,10 @@
   },
   "eslint.onIgnoredFiles": "warn",
   "eslint.validate": ["javascript"],
-  "eslint.packageManager": "npm",
-
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
+  "editor.formatOnSave": true,
   "git.ignoreLimitWarning": true
 }

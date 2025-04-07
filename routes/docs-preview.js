@@ -142,9 +142,10 @@ async function fileDownload(src, callback) {
 
 // 转换 PDF
 function loConvertPdf(file, callback) {
-  const cmd = `${
-    process.env.RBDP_LIBREOFFICE_BIN || 'libreoffice'
-  } --headless --convert-to pdf ${file}.download --outdir ${getUseDir()}`;
+  const bin =
+    process.env.RBDP_LIBREOFFICE_BIN ||
+    (process.platform === 'win32' ? 'soffice.exe' : 'libreoffice');
+  const cmd = `${bin} --headless --convert-to pdf ${file}.download --outdir ${getUseDir()}`;
   console.log('Exec convert ...', cmd);
 
   // eslint-disable-next-line no-unused-vars
