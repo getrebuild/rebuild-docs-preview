@@ -1,3 +1,6 @@
+
+> !!! 本仓库不再维护，推荐使用最新文档预览方案 [https://juejin.cn/post/7521754040453562420](https://juejin.cn/post/7521754040453562420)
+
 # REBUILD DOCS PREVIEW
 
 基于 [Libre Office](https://www.libreoffice.org/) 的简易文档预览服务。原理是通过将 Office 文件转换成 PDF，然后通过浏览器自带的 PDF 阅读功能进行预览。
